@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIKHIL Group of India - Serving Communities & Preserving Culture</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.35/dist/lenis.min.js"></script>
+    <style>
+        :root {
+            --primary: #2a6b5d;
+            --secondary: #e67e22;
+            --accent: #d35400;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --text: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Smooth scrolling */
+        html.lenis {
+            height: auto;
+        }
+        
+        /* Custom cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--secondary);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+        }
+        
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--secondary);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.4s ease, width 0.4s ease, height 0.4s ease;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .navbar-nav .nav-link {
+            color: var(--dark);
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:hover:after,
+        .navbar-nav .nav-link.active:after {
+            width: 100%;
+        }
+        
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(42, 107, 93, 0.8), rgba(42, 107, 93, 0.9)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3') no-repeat center center/cover;
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .btn-donate {
+            background: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .btn-donate:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        /* Causes Section */
+        .causes {
+            background-color: var(--light);
+        }
+        
+        .cause-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+        
+        .cause-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .cause-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .cause-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .cause-card:hover .cause-img img {
+            transform: scale(1.1);
+        }
+        
+        .cause-content {
+            padding: 25px;
+        }
+        
+        .cause-content h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        /* Impact Section */
+        .impact-stats {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .impact-stats:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        /* Gallery */
+        .gallery {
+            background-color: var(--light);
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            height: 300px;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(42, 107, 93, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Donation Section */
+        .donation {
+            background: linear-gradient(rgba(42, 107, 93, 0.9), rgba(42, 107, 93, 0.9)), url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-4.0.3') center/cover;
+            color: white;
+        }
+        
+        .donation-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .donation-card h3 {
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+        
+        .donation-option {
+            display: block;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .donation-option:hover {
+            border-color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        .donation-option.selected {
+            border-color: var(--secondary);
+            background: rgba(230, 126, 34, 0.1);
+        }
+        
+        .donation-option i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h5 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .footer-links h5:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            color: #aaa;
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Members Counter */
+        .members-counter {
+            background: var(--primary);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .counter-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .counter-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">NIKHIL Group</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#members">Our Members</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#causes">Our Work</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#impact">Impact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#donate">Join Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content fade-in">
+            <h1>NIKHIL Group of India</h1>
+            <p>A nationwide movement of compassionate individuals working together to support disaster victims, protect animals, and preserve India's cultural heritage through community-driven initiatives.</p>
+            <a href="#donate" class="btn btn-donate">Join Our Movement</a>
+        </div>
+    </section>
+
+    <!-- Members Counter -->
+    <section id="members" class="members-counter">
+        <div class="container">
+            <h2 class="section-title text-white">Our Growing Family</h2>
+            <div class="row">
+                <div class="col-md-4 fade-in">
+                    <div class="impact-stats">
+                        <div class="stat-number" id="memberCounter">0</div>
+                        <h4>Dedicated Members</h4>
+                        <p>Active volunteers across India</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="impact-stats">
+                        <div class="stat-number" id="animalCounter">0</div>
+                        <h4>Animals Helped</h4>
+                        <p>Rescued and provided care</p>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="impact-stats">
+                        <div class="stat-number" id="villageCounter">0</div>
+                        <h4>Villages Supported</h4>
+                        <p>Across 18 states in India</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 fade-in">
+                    <h2 class="section-title">About NIKHIL Group</h2>
+                    <p class="lead">NIKHIL Group is a nationwide network of compassionate individuals united by the common goal of serving humanity and preserving our cultural heritage.</p>
+                    <p>Founded in 2015, we've grown from a small group of 5 friends to a movement of over 12,500 members across India. Our name "NIKHIL" represents our vision - "Noble Initiatives for Kindness, Humanity, and Indian Legacy".</p>
+                    <p>What began as local relief efforts during the Kerala floods has now expanded into a multi-faceted organization working in disaster response, animal welfare, and cultural preservation.</p>
+                    <div class="mt-5">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary text-white rounded-circle p-3 me-3">
+                                <i class="fas fa-users fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5>Community-Driven</h5>
+                                <p>Every initiative is planned and executed by local members</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="bg-secondary text-white rounded-circle p-3 me-3">
+                                <i class="fas fa-hands-helping fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5>Transparent Operations</h5>
+                                <p>100% of donations go directly to those in need</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 fade-in">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3" alt="NIKHIL Group Members" class="img-fluid rounded shadow">
+                        <div class="position-absolute top-0 start-0 bg-primary text-white p-3 rounded">
+                            <h3 class="m-0">18</h3>
+                            <p class="m-0">States</p>
+                        </div>
+                        <div class="position-absolute bottom-0 end-0 bg-secondary text-white p-3 rounded">
+                            <h3 class="m-0">12500+</h3>
+                            <p class="m-0">Members</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Causes Section -->
+    <section id="causes" class="causes">
+        <div class="container">
+            <h2 class="section-title">Our Core Initiatives</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="cause-card">
+                        <div class="cause-img">
+                            <img src="https://images.unsplash.com/photo-1581578029523-0c0a2bdcdd8d?ixlib=rb-4.0.3" alt="Disaster Relief">
+                        </div>
+                        <div class="cause-content">
+                            <h3>Disaster Response Teams</h3>
+                            <p>Our trained volunteer teams provide immediate assistance during floods, earthquakes, and other calamities across India. In 2022 alone, we helped over 8,200 families.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85% Active</div>
+                            </div>
+                            <a href="#" class="btn btn-outline-primary">Join Response Team</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="cause-card">
+                        <div class="cause-img">
+                            <img src="https://images.unsplash.com/photo-1474511320723-9a56873867b5?ixlib=rb-4.0.3" alt="Animal Welfare">
+                        </div>
+                        <div class="cause-content">
+                            <h3>Animal Rescue Network</h3>
+                            <p>With 1,200+ animal lovers in our network, we've rescued over 5,700 animals since 2018. We run sterilization programs and emergency veterinary care units.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">72% Active</div>
+                            </div>
+                            <a href="#" class="btn btn-outline-primary">Help Animals</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="cause-card">
+                        <div class="cause-img">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3" alt="Cultural Preservation">
+                        </div>
+                        <div class="cause-content">
+                            <h3>Cultural Revival Program</h3>
+                            <p>We've supported 420+ traditional artisans and organized 180+ cultural events to preserve India's heritage. Our members document endangered art forms.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65% Active</div>
+                            </div>
+                            <a href="#" class="btn btn-outline-primary">Learn Traditions</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact">
+        <div class="container">
+            <h2 class="section-title">Our Impact in Numbers</h2>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-4 fade-in">
+                    <div class="impact-stats">
+                        <div class="stat-number">12,500+</div>
+                        <h4>Active Members</h4>
+                        <p>Working across India</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4 fade-in">
+                    <div class="impact-stats">
+                        <div class="stat-number">5,700+</div>
+                        <h4>Animals Rescued</h4>
+                        <p>Since 2018</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4 fade-in">
+                    <div class="impact-stats">
+                        <div class="stat-number">420+</div>
+                        <h4>Villages Reached</h4>
+                        <p>In 18 states</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4 fade-in">
+                    <div class="impact-stats">
+                        <div class="stat-number">180+</div>
+                        <h4>Cultural Events</h4>
+                        <p>Organized nationwide</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-6 fade-in">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-start">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3" alt="Testimonial" class="rounded-circle me-4" width="80" height="80">
+                                <div>
+                                    <h5>Rajesh Kumar</h5>
+                                    <p class="text-muted">NIKHIL Group Volunteer, Bihar</p>
+                                    <p class="mb-0">"I joined NIKHIL Group in 2019 after seeing their work during floods. In 4 years, our Bihar team has grown from 7 to 420 members. Together we've helped 38 villages and rescued over 600 animals."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 fade-in">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-start">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3" alt="Testimonial" class="rounded-circle me-4" width="80" height="80">
+                                <div>
+                                    <h5>Priya Sharma</h5>
+                                    <p class="text-muted">Animal Rescue Team, Maharashtra</p>
+                                    <p class="mb-0">"Our Mumbai team has 850 dedicated members. Last year alone, we rescued 1,200 animals and conducted sterilization for 800 street dogs. The NIKHIL network helps us share resources across states."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">NIKHIL Group in Action</h2>
+            <div class="row">
+                <div class="col-md-4 fade-in">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3" alt="Disaster Relief">
+                        <div class="gallery-overlay">
+                            <h4 class="text-white">Kerala Flood Relief 2021</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3" alt="Animal Rescue">
+                        <div class="gallery-overlay">
+                            <h4 class="text-white">Delhi Animal Rescue Camp</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1597047084897-51e81819a499?ixlib=rb-4.0.3" alt="Cultural Workshop">
+                        <div class="gallery-overlay">
+                            <h4 class="text-white">Rajasthan Folk Art Workshop</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3" alt="Community Development">
+                        <div class="gallery-overlay">
+                            <h4 class="text-white">Odisha Village Development</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?ixlib=rb-4.0.3" alt="Traditional Craft">
+                        <div class="gallery-overlay">
+                            <h4 class="text-white">Assamese Weavers Support</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 fade-in">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3" alt="Education Program">
+                        <div class="gallery-overlay">
+                            <h4 class="text-white">Tribal Education Initiative</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section id="donate" class="donation">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 fade-in">
+                    <div class="donation-card">
+                        <h3 class="text-center">Join NIKHIL Group</h3>
+                        <p class="text-center text-muted mb-4">Become part of our growing family of changemakers</p>
+                        
+                        <div class="mb-4">
+                            <h5 class="mb-3">Select Your Interest</h5>
+                            <div class="donation-option" onclick="selectOption(this)">
+                                <i class="fas fa-users"></i>
+                                <span>Disaster Response Volunteer</span>
+                            </div>
+                            <div class="donation-option" onclick="selectOption(this)">
+                                <i class="fas fa-paw"></i>
+                                <span>Animal Rescue Volunteer</span>
+                            </div>
+                            <div class="donation-option" onclick="selectOption(this)">
+                                <i class="fas fa-monument"></i>
+                                <span>Cultural Preservation</span>
+                            </div>
+                            <div class="donation-option" onclick="selectOption(this)">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                <span>General Member</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h5 class="mb-3">Your Location</h5>
+                            <select class="form-select">
+                                <option selected>Select your state</option>
+                                <option>Andhra Pradesh</option>
+                                <option>Bihar</option>
+                                <option>Delhi</option>
+                                <option>Gujarat</option>
+                                <option>Karnataka</option>
+                                <option>Kerala</option>
+                                <option>Maharashtra</option>
+                                <option>Tamil Nadu</option>
+                                <option>Uttar Pradesh</option>
+                                <option>West Bengal</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h5 class="mb-3">Time Commitment</h5>
+                            <div class="row">
+                                <div class="col-4 mb-3">
+                                    <button class="btn btn-outline-primary w-100 time-option">2-5 hrs</button>
+                                </div>
+                                <div class="col-4 mb-3">
+                                    <button class="btn btn-outline-primary w-100 time-option">5-10 hrs</button>
+                                </div>
+                                <div class="col-4 mb-3">
+                                    <button class="btn btn-outline-primary w-100 time-option">10+ hrs</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button class="btn btn-primary btn-lg w-100">Submit Application</button>
+                            <p class="text-muted mt-3">Our local coordinator will contact you within 48 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <div class="footer-logo">NIKHIL Group</div>
+                    <p>Noble Initiatives for Kindness, Humanity, and Indian Legacy - A nationwide movement creating positive change through community action.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-5 mb-md-0">
+                    <div class="footer-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#members">Our Members</a></li>
+                            <li><a href="#causes">Our Work</a></li>
+                            <li><a href="#impact">Impact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-5 mb-md-0">
+                    <div class="footer-links">
+                        <h5>Our Programs</h5>
+                        <ul>
+                            <li><a href="#">Disaster Response</a></li>
+                            <li><a href="#">Animal Rescue</a></li>
+                            <li><a href="#">Cultural Revival</a></li>
+                            <li><a href="#">Rural Development</a></li>
+                            <li><a href="#">Education Initiatives</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <div class="footer-links">
+                        <h5>Contact Us</h5>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt me-2"></i> NIKHIL House, Mumbai</li>
+                            <li><i class="fas fa-phone me-2"></i> +91 98765 43210</li>
+                            <li><i class="fas fa-envelope me-2"></i> contact@nikhilgroup.org</li>
+                            <li><i class="fas fa-clock me-2"></i> Mon-Sat: 9AM - 6PM</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 NIKHIL Group of India. All Rights Reserved. | Registered under Indian Trusts Act</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Initialize Lenis for smooth scrolling
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        })
+
+        function raf(time) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+
+        requestAnimationFrame(raf)
+        
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+            
+            setTimeout(() => {
+                cursorFollower.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+            }, 100);
+        });
+        
+        document.querySelectorAll('a, button, .donation-option, .time-option').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(3)';
+                cursorFollower.style.transform = 'scale(0.5)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursorFollower.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const appearOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        
+        const appearOnScroll = new IntersectionObserver((entries, appearOnScroll) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('appear');
+                appearOnScroll.unobserve(entry.target);
+            });
+        }, appearOptions);
+        
+        fadeElements.forEach(element => {
+            appearOnScroll.observe(element);
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '10px 0';
+                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.padding = '15px 0';
+                navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+        
+        // Donation option selection
+        function selectOption(element) {
+            document.querySelectorAll('.donation-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+        }
+        
+        // Time option selection
+        document.querySelectorAll('.time-option').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.time-option').forEach(btn => {
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-outline-primary');
+                });
+                this.classList.remove('btn-outline-primary');
+                this.classList.add('btn-primary');
+            });
+        });
+        
+        // Counter animation
+        function animateCounter(id, target, duration = 2000) {
+            const element = document.getElementById(id);
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(timer);
+                    current = target;
+                }
+                element.textContent = Math.floor(current).toLocaleString();
+            }, 16);
+        }
+        
+        // Initialize counters when section is visible
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter('memberCounter', 12500);
+                    animateCounter('animalCounter', 5700);
+                    animateCounter('villageCounter', 420);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        counterObserver.observe(document.querySelector('.members-counter'));
+    </script>
+</body>
+</html>
